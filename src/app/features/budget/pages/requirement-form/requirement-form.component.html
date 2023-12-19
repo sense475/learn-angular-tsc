@@ -1,0 +1,31 @@
+<p>requirement-form works!</p>
+debug: {{ fg.value | json }}
+<hr>
+<div class="w-50">
+    <form [formGroup]="fg">
+        <div class="my-1">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" [class.is-invalid]="title.errors && title.touched" formControlName="title" id="title" type="text">
+            <small class="invalid-feedback">Title is require</small>
+        </div>
+        <div class="my-1">
+            <label class="form-label" for="contactMobileNo">contact Mobile No</label>
+            <input class="form-control" [class.is-invalid]="contactMobileNo.errors && contactMobileNo.touched" formControlName="contactMobileNo" id="contactMobileNo" type="text" maxlength="10">
+            <small class="invalid-feedback">{{contactMobileNo.errors | json}}
+                @if (contactMobileNo.hasError('required')){
+                    contact Mobile No is require
+                } @else if (contactMobileNo.hasError('thMobile')) {
+                    please input th mobile no
+                }
+            </small>
+        </div>
+        <div class="my-3 d-flex justify-content-between">
+            <button class="btn btn-secondary" (click)="onBack()">Back</button>
+            <button [disabled]="!fg.valid" class="btn btn-primary" type="submit">Submit</button>
+            
+        </div>
+    </form>
+
+</div>
+
+<!-- <button (click)="onSubmit()">Submit</button> -->
